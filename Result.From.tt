@@ -1,0 +1,72 @@
+<#@ output extension=".cs"#>
+<#@ import namespace="System.Linq"#>
+<#@ import namespace="System.Collections.Generic"#>
+<#
+    int argnum = 9;
+#>
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+namespace optionalresulttest;
+
+public static partial class Result
+{
+    public static IResult<T, Exception> From<T>(Func<T> generator)
+    {
+        try
+        {
+            var ret = generator();
+            return new Ok<T, Exception>(ret);
+        }
+        catch (Exception e)
+        {
+            return new Err<T, Exception>(e);
+        }
+    }
+    public static async Task<IResult<T, Exception>> FromAsync<T>(Func<Task<T>> generator)
+    {
+        try
+        {
+            var ret = await generator().ConfigureAwait(false);
+            return new Ok<T, Exception>(ret);
+        }
+        catch (Exception e)
+        {
+            return new Err<T, Exception>(e);
+        }
+    }
+<# foreach(var i in Enumerable.Range(1, argnum)) {#>
+<#    var typeargs = Enumerable.Range(1, i).Select(x => $"TArg{x}");#>
+    public static IResult<T, Exception> From<T, <#=string.Join(", ", typeargs)#>>(
+        Func<<#=string.Join(", ", typeargs)#>, T> f,
+        <#=string.Join(", ", Enumerable.Range(1, i).Select(x => $"TArg{x} arg{x}"))#>
+        )
+    {
+        try
+        {
+            var ret = f(<#=string.Join(", ", Enumerable.Range(1, i).Select(x => $"arg{x}"))#>);
+            return new Ok<T, Exception>(ret);
+        }
+        catch(Exception e)
+        {
+            return new Err<T, Exception>(e);
+        }
+    }
+    public static async Task<IResult<T, Exception>> FromAsync<T, <#=string.Join(", ", typeargs)#>>(
+        Func<<#=string.Join(", ", typeargs)#>, CancellationToken, Task<T>> f,
+        <#=string.Join(", ", Enumerable.Range(1, i).Select(x => $"TArg{x} arg{x}"))#>,
+        CancellationToken ct
+        )
+    {
+        try
+        {
+            var ret = await f(<#=string.Join(", ", Enumerable.Range(1, i).Select(x => $"arg{x}"))#>, ct).ConfigureAwait(false);
+            return new Ok<T, Exception>(ret);
+        }
+        catch(Exception e)
+        {
+            return new Err<T, Exception>(e);
+        }
+    }
+<# }#>
+}

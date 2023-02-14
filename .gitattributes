@@ -1,0 +1,3 @@
+*.csproj text=auto
+*.cs text=auto
+*.tt text=auto

@@ -1,0 +1,43 @@
+<#@ output extension=".cs"#>
+<#@ import namespace="System.Linq"#>
+<#@ import namespace="System.Collections.Generic"#>
+<#
+    int argnum = 9;
+#>
+using System;
+namespace optionalresulttest;
+
+public static partial class Result
+{
+    public static IResult<TRet, TErr> Map<T, TErr, TRet>(this IResult<T, TErr> r, Func<T, TRet> f)
+    {
+        if(r.IsOk())
+        {
+            r.TryGet(out var ret);
+            return new Ok<TRet, TErr>(f(ret));
+        }
+        else
+        {
+            r.TryGetError(out var e);
+            return new Err<TRet, TErr>(e);
+        }
+    }
+<#foreach(var i in Enumerable.Range(1, 9)){#>
+    public static IResult<TRet, TErr> Map<T, TErr, TRet, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x}"))#>>(
+        this IResult<T, TErr> r, Func<T, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x}"))#>, TRet> f,
+        <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x} arg{x}"))#>
+        )
+    {
+        if(r.IsOk())
+        {
+            r.TryGet(out var ret);
+            return new Ok<TRet, TErr>(f(ret, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"arg{x}"))#>));
+        }
+        else
+        {
+            r.TryGetError(out var e);
+            return new Err<TRet, TErr>(e);
+        }
+    }
+<#}#>
+}
