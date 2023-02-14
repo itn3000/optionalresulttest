@@ -4,7 +4,30 @@ namespace optionalresulttest
 {
     class Program
     {
-        static void Main(string[] args)
+        static void OptionalTest()
+        {
+            var o1 = Optional.Some(1).Unwrap();
+            Console.WriteLine(o1.ToString());
+            var o2 = Optional.None<int>().Unwrap();
+            Console.WriteLine(o2.ToString());
+            // switch some
+            var o3 = Optional.Some(2);
+            var str1 = o3 switch {
+                Some<int> s1 => $"some: {s1.Get()}",
+                None<int> n1 => $"none",
+                _ => $"invalid"
+            };
+            Console.WriteLine(str1);
+            // switch none
+            var o4 = Optional.None<int>();
+            var str2 = o4 switch {
+                Some<int> s1 => $"some: {s1.Get()}",
+                None<int> n1 => $"none",
+                _ => $"invalid"
+            };
+            Console.WriteLine(str2);
+        }
+        static void ResultTest()
         {
             // unwrap ok
             var (v, e) = Result.From(() => 1).Unwrap();
@@ -40,6 +63,11 @@ namespace optionalresulttest
                 default:
                     throw new NotImplementedException();
             }
+        }
+        static void Main(string[] args)
+        {
+            ResultTest();
+            OptionalTest();
         }
     }
 }

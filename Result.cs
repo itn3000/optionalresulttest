@@ -8,9 +8,8 @@ public static partial class Result
     public static IResult<T, TErr> Err<T, TErr>(TErr e) => new Err<T, TErr>(e);
     public static (T v, TErr e) Unwrap<T, TErr>(this IResult<T, TErr> r)
     {
-        if (r.IsOk())
+        if (r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return (ret, default);
         }
         else
@@ -21,9 +20,8 @@ public static partial class Result
     }
     public static T UnwrapOr<T, TErr>(this IResult<T, TErr> r, T alternative)
     {
-        if (r.IsOk())
+        if (r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return ret;
         }
         else

@@ -12,9 +12,8 @@ public static partial class Result
 {
     public static T UnwrapOrElse<T, TErr>(this IResult<T, TErr> r, Func<TErr, T> f)
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return ret;
         }
         else
@@ -25,9 +24,8 @@ public static partial class Result
     }
     public static async Task<T> UnwrapOrElseAsync<T, TErr>(this IResult<T, TErr> r, Func<TErr, Task<T>> f)
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return ret;
         }
         else
@@ -42,9 +40,8 @@ public static partial class Result
         <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x} arg{x}"))#>
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return ret;
         }
         else
@@ -58,9 +55,8 @@ public static partial class Result
         <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x} arg{x}"))#>
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return ret;
         }
         else

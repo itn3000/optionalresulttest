@@ -12,9 +12,8 @@ public static partial class Result
 {
     public static IResult<TRet, TErr> Map<T, TErr, TRet>(this IResult<T, TErr> r, Func<T, TRet> f)
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(f(ret));
         }
         else
@@ -25,9 +24,8 @@ public static partial class Result
     }
     public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet>(this IResult<T, TErr> r, Func<T, Task<TRet>> f)
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(await f(ret).ConfigureAwait(false));
         }
         else
@@ -42,9 +40,8 @@ public static partial class Result
         <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x} arg{x}"))#>
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(f(ret, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"arg{x}"))#>));
         }
         else
@@ -58,9 +55,8 @@ public static partial class Result
         <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x} arg{x}"))#>
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(await f(ret, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"arg{x}"))#>).ConfigureAwait(false));
         }
         else

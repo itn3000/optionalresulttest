@@ -6,9 +6,8 @@ public static partial class Result
 {
     public static IResult<TRet, TErr> Map<T, TErr, TRet>(this IResult<T, TErr> r, Func<T, TRet> f)
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(f(ret));
         }
         else
@@ -19,9 +18,8 @@ public static partial class Result
     }
     public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet>(this IResult<T, TErr> r, Func<T, Task<TRet>> f)
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(await f(ret).ConfigureAwait(false));
         }
         else
@@ -35,9 +33,8 @@ public static partial class Result
         TArg0 arg0
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(f(ret, arg0));
         }
         else
@@ -51,9 +48,8 @@ public static partial class Result
         TArg0 arg0
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(await f(ret, arg0).ConfigureAwait(false));
         }
         else
@@ -67,9 +63,8 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(f(ret, arg0, arg1));
         }
         else
@@ -83,9 +78,8 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(await f(ret, arg0, arg1).ConfigureAwait(false));
         }
         else
@@ -99,9 +93,8 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(f(ret, arg0, arg1, arg2));
         }
         else
@@ -115,9 +108,8 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(await f(ret, arg0, arg1, arg2).ConfigureAwait(false));
         }
         else
@@ -131,9 +123,8 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(f(ret, arg0, arg1, arg2, arg3));
         }
         else
@@ -147,9 +138,8 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(await f(ret, arg0, arg1, arg2, arg3).ConfigureAwait(false));
         }
         else
@@ -163,9 +153,8 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(f(ret, arg0, arg1, arg2, arg3, arg4));
         }
         else
@@ -179,9 +168,8 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(await f(ret, arg0, arg1, arg2, arg3, arg4).ConfigureAwait(false));
         }
         else
@@ -195,9 +183,8 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(f(ret, arg0, arg1, arg2, arg3, arg4, arg5));
         }
         else
@@ -211,9 +198,8 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(await f(ret, arg0, arg1, arg2, arg3, arg4, arg5).ConfigureAwait(false));
         }
         else
@@ -227,9 +213,8 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(f(ret, arg0, arg1, arg2, arg3, arg4, arg5, arg6));
         }
         else
@@ -243,9 +228,8 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(await f(ret, arg0, arg1, arg2, arg3, arg4, arg5, arg6).ConfigureAwait(false));
         }
         else
@@ -259,9 +243,8 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(f(ret, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7));
         }
         else
@@ -275,9 +258,8 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(await f(ret, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7).ConfigureAwait(false));
         }
         else
@@ -291,9 +273,8 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(f(ret, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8));
         }
         else
@@ -307,9 +288,8 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8
         )
     {
-        if(r.IsOk())
+        if(r.TryGet(out var ret))
         {
-            r.TryGet(out var ret);
             return new Ok<TRet, TErr>(await f(ret, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8).ConfigureAwait(false));
         }
         else
