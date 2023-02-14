@@ -15,6 +15,9 @@ namespace optionalresulttest
             // map
             var v3 = Result.From(() => 1).Map((i, j) => $"{i}|{j}", 2).Unwrap();
             Console.WriteLine($"v3: {v3}");
+            // unwrap or else
+            var v4 = Result.From<int>(() => throw new Exception("unwraporelse")).UnwrapOrElse(e => 0);
+            Console.WriteLine($"v4: {v4}");
             // switch, ok
             switch(Result.From(() => 1)) {
                 case Ok<int, Exception> x:
