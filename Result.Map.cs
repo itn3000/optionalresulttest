@@ -6,26 +6,26 @@ public static partial class Result
 {
     public static IResult<TRet, TErr> Map<T, TErr, TRet>(this IResult<T, TErr> r, Func<T, TRet> f)
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(f(ret));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(f(x.Get()));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet>(this IResult<T, TErr> r, Func<T, Task<TRet>> f)
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(await f(ret).ConfigureAwait(false));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(await f(x.Get()).ConfigureAwait(false));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0>(
@@ -33,14 +33,14 @@ public static partial class Result
         TArg0 arg0
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(f(ret, arg0));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(f(x.Get(), arg0));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0>(
@@ -48,14 +48,14 @@ public static partial class Result
         TArg0 arg0
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(await f(ret, arg0).ConfigureAwait(false));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(await f(x.Get(), arg0).ConfigureAwait(false));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1>(
@@ -63,14 +63,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(f(ret, arg0, arg1));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(f(x.Get(), arg0, arg1));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1>(
@@ -78,14 +78,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(await f(ret, arg0, arg1).ConfigureAwait(false));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(await f(x.Get(), arg0, arg1).ConfigureAwait(false));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2>(
@@ -93,14 +93,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(f(ret, arg0, arg1, arg2));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(f(x.Get(), arg0, arg1, arg2));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2>(
@@ -108,14 +108,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(await f(ret, arg0, arg1, arg2).ConfigureAwait(false));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(await f(x.Get(), arg0, arg1, arg2).ConfigureAwait(false));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3>(
@@ -123,14 +123,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(f(ret, arg0, arg1, arg2, arg3));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(f(x.Get(), arg0, arg1, arg2, arg3));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3>(
@@ -138,14 +138,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(await f(ret, arg0, arg1, arg2, arg3).ConfigureAwait(false));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(await f(x.Get(), arg0, arg1, arg2, arg3).ConfigureAwait(false));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4>(
@@ -153,14 +153,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(f(ret, arg0, arg1, arg2, arg3, arg4));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(f(x.Get(), arg0, arg1, arg2, arg3, arg4));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4>(
@@ -168,14 +168,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(await f(ret, arg0, arg1, arg2, arg3, arg4).ConfigureAwait(false));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(await f(x.Get(), arg0, arg1, arg2, arg3, arg4).ConfigureAwait(false));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(
@@ -183,14 +183,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(f(ret, arg0, arg1, arg2, arg3, arg4, arg5));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(f(x.Get(), arg0, arg1, arg2, arg3, arg4, arg5));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(
@@ -198,14 +198,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(await f(ret, arg0, arg1, arg2, arg3, arg4, arg5).ConfigureAwait(false));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(await f(x.Get(), arg0, arg1, arg2, arg3, arg4, arg5).ConfigureAwait(false));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(
@@ -213,14 +213,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(f(ret, arg0, arg1, arg2, arg3, arg4, arg5, arg6));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(f(x.Get(), arg0, arg1, arg2, arg3, arg4, arg5, arg6));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(
@@ -228,14 +228,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(await f(ret, arg0, arg1, arg2, arg3, arg4, arg5, arg6).ConfigureAwait(false));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(await f(x.Get(), arg0, arg1, arg2, arg3, arg4, arg5, arg6).ConfigureAwait(false));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(
@@ -243,14 +243,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(f(ret, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(f(x.Get(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(
@@ -258,14 +258,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(await f(ret, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7).ConfigureAwait(false));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(await f(x.Get(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7).ConfigureAwait(false));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(
@@ -273,14 +273,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(f(ret, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(f(x.Get(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(
@@ -288,14 +288,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return new Ok<TRet, TErr>(await f(ret, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8).ConfigureAwait(false));
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<TRet, TErr>(e);
+            case Ok<T, TErr> x:
+                return new Ok<TRet, TErr>(await f(x.Get(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8).ConfigureAwait(false));
+            case Err<T, TErr> x:
+                return new Err<TRet, TErr>(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
 }

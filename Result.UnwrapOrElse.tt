@@ -12,26 +12,26 @@ public static partial class Result
 {
     public static T UnwrapOrElse<T, TErr>(this IResult<T, TErr> r, Func<TErr, T> f)
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return f(er);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+                return f(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<T> UnwrapOrElseAsync<T, TErr>(this IResult<T, TErr> r, Func<TErr, Task<T>> f)
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return await f(er).ConfigureAwait(false);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+                return await f(x.Get()).ConfigureAwait(false);
+            default:
+                throw new NotImplementedException();
         }
     }
 <#foreach(var i in Enumerable.Range(1, 9)){#>
@@ -40,14 +40,14 @@ public static partial class Result
         <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x} arg{x}"))#>
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return f(er, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"arg{x}"))#>);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+                return f(x.Get(), <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"arg{x}"))#>);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<T> UnwrapOrElseAsync<T, TErr, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x}"))#>>(
@@ -55,14 +55,14 @@ public static partial class Result
         <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x} arg{x}"))#>
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return await f(er, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"arg{x}"))#>).ConfigureAwait(false);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+               return await f(x.Get(), <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"arg{x}"))#>).ConfigureAwait(false);
+            default:
+                throw new NotImplementedException();
         }
     }
 <#}#>

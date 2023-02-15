@@ -6,26 +6,26 @@ public static partial class Result
 {
     public static T UnwrapOrElse<T, TErr>(this IResult<T, TErr> r, Func<TErr, T> f)
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return f(er);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+                return f(x.Get());
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<T> UnwrapOrElseAsync<T, TErr>(this IResult<T, TErr> r, Func<TErr, Task<T>> f)
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return await f(er).ConfigureAwait(false);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+                return await f(x.Get()).ConfigureAwait(false);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static T UnwrapOrElse<T, TErr, TArg0>(
@@ -33,14 +33,14 @@ public static partial class Result
         TArg0 arg0
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return f(er, arg0);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+                return f(x.Get(), arg0);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<T> UnwrapOrElseAsync<T, TErr, TArg0>(
@@ -48,14 +48,14 @@ public static partial class Result
         TArg0 arg0
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return await f(er, arg0).ConfigureAwait(false);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+               return await f(x.Get(), arg0).ConfigureAwait(false);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static T UnwrapOrElse<T, TErr, TArg0, TArg1>(
@@ -63,14 +63,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return f(er, arg0, arg1);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+                return f(x.Get(), arg0, arg1);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<T> UnwrapOrElseAsync<T, TErr, TArg0, TArg1>(
@@ -78,14 +78,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return await f(er, arg0, arg1).ConfigureAwait(false);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+               return await f(x.Get(), arg0, arg1).ConfigureAwait(false);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static T UnwrapOrElse<T, TErr, TArg0, TArg1, TArg2>(
@@ -93,14 +93,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return f(er, arg0, arg1, arg2);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+                return f(x.Get(), arg0, arg1, arg2);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<T> UnwrapOrElseAsync<T, TErr, TArg0, TArg1, TArg2>(
@@ -108,14 +108,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return await f(er, arg0, arg1, arg2).ConfigureAwait(false);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+               return await f(x.Get(), arg0, arg1, arg2).ConfigureAwait(false);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static T UnwrapOrElse<T, TErr, TArg0, TArg1, TArg2, TArg3>(
@@ -123,14 +123,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return f(er, arg0, arg1, arg2, arg3);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+                return f(x.Get(), arg0, arg1, arg2, arg3);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<T> UnwrapOrElseAsync<T, TErr, TArg0, TArg1, TArg2, TArg3>(
@@ -138,14 +138,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return await f(er, arg0, arg1, arg2, arg3).ConfigureAwait(false);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+               return await f(x.Get(), arg0, arg1, arg2, arg3).ConfigureAwait(false);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static T UnwrapOrElse<T, TErr, TArg0, TArg1, TArg2, TArg3, TArg4>(
@@ -153,14 +153,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return f(er, arg0, arg1, arg2, arg3, arg4);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+                return f(x.Get(), arg0, arg1, arg2, arg3, arg4);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<T> UnwrapOrElseAsync<T, TErr, TArg0, TArg1, TArg2, TArg3, TArg4>(
@@ -168,14 +168,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return await f(er, arg0, arg1, arg2, arg3, arg4).ConfigureAwait(false);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+               return await f(x.Get(), arg0, arg1, arg2, arg3, arg4).ConfigureAwait(false);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static T UnwrapOrElse<T, TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(
@@ -183,14 +183,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return f(er, arg0, arg1, arg2, arg3, arg4, arg5);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+                return f(x.Get(), arg0, arg1, arg2, arg3, arg4, arg5);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<T> UnwrapOrElseAsync<T, TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(
@@ -198,14 +198,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return await f(er, arg0, arg1, arg2, arg3, arg4, arg5).ConfigureAwait(false);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+               return await f(x.Get(), arg0, arg1, arg2, arg3, arg4, arg5).ConfigureAwait(false);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static T UnwrapOrElse<T, TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(
@@ -213,14 +213,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return f(er, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+                return f(x.Get(), arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<T> UnwrapOrElseAsync<T, TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(
@@ -228,14 +228,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return await f(er, arg0, arg1, arg2, arg3, arg4, arg5, arg6).ConfigureAwait(false);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+               return await f(x.Get(), arg0, arg1, arg2, arg3, arg4, arg5, arg6).ConfigureAwait(false);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static T UnwrapOrElse<T, TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(
@@ -243,14 +243,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return f(er, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+                return f(x.Get(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<T> UnwrapOrElseAsync<T, TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(
@@ -258,14 +258,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return await f(er, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7).ConfigureAwait(false);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+               return await f(x.Get(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7).ConfigureAwait(false);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static T UnwrapOrElse<T, TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(
@@ -273,14 +273,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return f(er, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+                return f(x.Get(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+            default:
+                throw new NotImplementedException();
         }
     }
     public static async Task<T> UnwrapOrElseAsync<T, TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(
@@ -288,14 +288,14 @@ public static partial class Result
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8
         )
     {
-        if(r.TryGet(out var ret))
+        switch(r)
         {
-            return ret;
-        }
-        else
-        {
-            r.TryGetError(out var er);
-            return await f(er, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8).ConfigureAwait(false);
+            case Ok<T, TErr> x:
+                return x.Get();
+            case Err<T, TErr> x:
+               return await f(x.Get(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8).ConfigureAwait(false);
+            default:
+                throw new NotImplementedException();
         }
     }
 }
