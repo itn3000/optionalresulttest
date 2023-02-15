@@ -63,6 +63,26 @@ namespace optionalresulttest
                 default:
                     throw new NotImplementedException();
             }
+            // map, switch ok
+            switch(Result.From<int>(() => 0).Map(x => x.ToString()).MapErr(e => e.Message))
+            {
+                case Ok<string, string> x:
+                    Console.WriteLine($"ok2: {x.Get()}");
+                    break;
+                case Err<string, string> x:
+                    Console.WriteLine($"ng2: {x.Get()}");
+                    break;
+            }
+            // map, switch ng
+            switch(Result.From<int>(() => throw new Exception("hogehoge")).Map(x => x.ToString()).MapErr(e => e.Message))
+            {
+                case Ok<string, string> x:
+                    Console.WriteLine($"ok3: {x.Get()}");
+                    break;
+                case Err<string, string> x:
+                    Console.WriteLine($"ng3: {x.Get()}");
+                    break;
+            }
         }
         static void Main(string[] args)
         {
