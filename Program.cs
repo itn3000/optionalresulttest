@@ -15,7 +15,7 @@ namespace optionalresulttest
             var str1 = o3 switch {
                 Some<int> s1 => $"some: {s1.Get()}",
                 None<int> n1 => $"none",
-                _ => $"invalid"
+                _ => throw new NotImplementedException()
             };
             Console.WriteLine(str1);
             // switch none
@@ -23,7 +23,7 @@ namespace optionalresulttest
             var str2 = o4 switch {
                 Some<int> s1 => $"some: {s1.Get()}",
                 None<int> n1 => $"none",
-                _ => $"invalid"
+                _ => throw new NotImplementedException()
             };
             Console.WriteLine(str2);
         }
