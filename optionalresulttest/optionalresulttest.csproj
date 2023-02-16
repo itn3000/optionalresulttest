@@ -6,14 +6,6 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <T4Template Include="**/*.tt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ResultNet\ResultNet.csproj" />
   </ItemGroup>
-  <Target Name="GenT4">
-    <Message Importance="normal" Text="generating %(T4Template.Identity)" />
-    <Exec Command="dotnet t4 %(T4Template.Identity)" />
-  </Target>
-
 </Project>
