@@ -1,0 +1,39 @@
+<#@ output extension=".cs"#>
+<#@ import namespace="System.Linq"#>
+<#@ import namespace="System.Collections.Generic"#>
+<#
+    int argnum = 9;
+#>
+using System;
+using System.Threading.Tasks;
+namespace optionalresulttest;
+
+public static partial class Result
+{
+<#foreach(var i in Enumerable.Range(1, 9)){#>
+    public static TRet Switch<T, TErr, TRet, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x}"))#>>(
+        this IResult<T, TErr> r, Func<T, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x}"))#>, TRet> fOk,
+        Func<TErr, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x}"))#>, TRet> fErr,
+        Func<IResult<T, TErr>, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x}"))#>, TRet> fOther,
+        <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x} arg{x}"))#>
+        )
+    {
+        switch (r)
+        {
+            case Ok<T, TErr> x:
+                return fOk(x.Get(), <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"arg{x}"))#>);
+            case Err<T, TErr> x:
+                return fErr(x.Get(), <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"arg{x}"))#>);
+            default:
+                if (fOther != null)
+                {
+                    return fOther(r, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"arg{x}"))#>);
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+        }
+    }
+<#}#>
+}

@@ -29,4 +29,23 @@ public static partial class Result
             return alternative;
         }
     }
+    public static TRet Switch<T, TErr, TRet>(this IResult<T, TErr> r, Func<T, TRet> fOk, Func<TErr, TRet> fErr, Func<IResult<T, TErr>, TRet> fOther)
+    {
+        switch (r)
+        {
+            case Ok<T, TErr> x:
+                return fOk(x.Get());
+            case Err<T, TErr> x:
+                return fErr(x.Get());
+            default:
+                if (fOther != null)
+                {
+                    return fOther(r);
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+        }
+    }
 }

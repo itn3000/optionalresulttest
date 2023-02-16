@@ -83,6 +83,10 @@ namespace optionalresulttest
                     Console.WriteLine($"ng3: {x.Get()}");
                     break;
             }
+            // switch method ok
+            Console.WriteLine("switch method: {0}", Result.From<int>(() => 0).Switch(x => x.ToString("x02"), e => e.ToString(), null));
+            // switch method ng
+            Console.WriteLine("switch method: {0}", Result.From<int>(() => throw new Exception("switch exception")).Switch(x => x.ToString("x02"), e => e.ToString(), null));
         }
         static void Main(string[] args)
         {
