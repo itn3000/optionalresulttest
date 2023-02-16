@@ -1,11 +1,12 @@
 namespace optionalresulttest;
 
-public interface IOptional<T>
+public abstract class Optional<T>
 {
-    bool IsOk();
+    internal Optional(){}
+    public abstract bool IsOk();
 }
 
-public class Some<T>: IOptional<T>
+public class Some<T>: Optional<T>
 {
     T _Value;
     public Some(T value)
@@ -13,20 +14,21 @@ public class Some<T>: IOptional<T>
         _Value = value;
     }
 
-    public bool IsOk() => true;
+    public override bool IsOk() => true;
     public T Get() => _Value;
 }
 
-public class None<T> : IOptional<T>
+public class None<T> : Optional<T>
 {
-    public bool IsOk() => false;
+    public override bool IsOk() => false;
+    internal static readonly None<T> Instance = new None<T>();
 }
 
 public static partial class Optional
 {
-    public static IOptional<T> Some<T>(T value) => new Some<T>(value);
-    public static IOptional<T> None<T>() => new None<T>();
-    public static (bool isOk, T? value) Unwrap<T>(this IOptional<T> o)
+    public static Optional<T> Some<T>(T value) => new Some<T>(value);
+    public static Optional<T> None<T>() => optionalresulttest.None<T>.Instance;
+    public static (bool isOk, T? value) Unwrap<T>(this Optional<T> o)
     {
         switch(o)
         {
@@ -36,7 +38,7 @@ public static partial class Optional
                 return (false, default);
         }
     }
-    public static T UnwrapOr<T>(this IOptional<T> o, T alternative)
+    public static T UnwrapOr<T>(this Optional<T> o, T alternative)
     {
         switch(o)
         {
@@ -45,5 +47,19 @@ public static partial class Optional
             default:
                 return alternative;
         }
+    }
+    public static Optional<TRet> Map<T, TRet>(this Optional<T> o, Func<T, TRet> f)
+    {
+        return o switch {
+            Some<T> x => Optional.Some(f(x.Get())),
+            _ => Optional.None<TRet>()
+        };
+    }
+    public static TRet Switch<T, TRet>(this Optional<T> o, Func<T, TRet> fSome, Func<TRet> fNone)
+    {
+        return o switch {
+            Some<T> x => fSome(x.Get()),
+            _ => fNone(),
+        };
     }
 }

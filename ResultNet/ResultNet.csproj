@@ -10,7 +10,7 @@
   </ItemGroup>
   <Target Name="GenT4">
     <Message Importance="normal" Text="generating %(T4Template.Identity)" />
-    <Exec Command="dotnet t4 %(T4Template.Identity)" />
+    <Exec Command="dotnet t4 %(T4Template.Identity)" WorkingDirectory="$(MSBuildThisFileDirectory)" />
   </Target>
 
 </Project>
