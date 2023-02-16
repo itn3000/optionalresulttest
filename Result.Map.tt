@@ -46,7 +46,7 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<Result<T, TErrRet>> MapErr<T, TErr, TErrRet>(this Result<T, TErr> r, Func<TErr, Task<TErrRet>> f)
+    public static async Task<Result<T, TErrRet>> MapErrAsync<T, TErr, TErrRet>(this Result<T, TErr> r, Func<TErr, Task<TErrRet>> f)
     {
         switch(r)
         {
@@ -56,30 +56,6 @@ public static partial class Result
                 return new Err<T, TErrRet>(await f(x.Get()).ConfigureAwait(false));
             default:
                 throw new NotImplementedException();
-        }
-    }
-    public static IResult<T, TErrRet> MapErr<T, TErr, TErrRet>(this IResult<T, TErr> r, Func<TErr, TErrRet> f)
-    {
-        if(r.TryGet(out var ret))
-        {
-            return new Ok<T, TErrRet>(ret);
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<T, TErrRet>(f(e));
-        }
-    }
-    public static async Task<IResult<T, TErrRet>> MapErrAsync<T, TErr, TErrRet>(this IResult<T, TErr> r, Func<TErr, Task<TErrRet>> f)
-    {
-        if(r.TryGet(out var ret))
-        {
-            return new Ok<T, TErrRet>(ret);
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<T, TErrRet>(await f(e).ConfigureAwait(false));
         }
     }
 <#foreach(var i in Enumerable.Range(1, 9)){#>
@@ -115,61 +91,25 @@ public static partial class Result
     }
     public static Result<T, TErrRet> MapErr<T, TErr, TErrRet, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x}"))#>>(
         this Result<T, TErr> r, Func<TErr, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x}"))#>, TErrRet> f,
-        <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x} arg{x}"))#>)
-    {
-        switch(r)
-        {
-            case Ok<T, TErr> x:
-                return new Ok<T, TErrRet>(x.Get());
-            case Err<T, TErr> x:
-                return new Err<T, TErrRet>(f(x.Get(), <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"arg{x}"))#>));
-            default:
-                throw new NotImplementedException();
-        }
-    }
-    public static async Task<Result<T, TErrRet>> MapErr<T, TErr, TErrRet, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x}"))#>>
-        (this Result<T, TErr> r, Func<TErr, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x}"))#>, Task<TErrRet>> f,
-        <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x} arg{x}"))#>)
-    {
-        switch(r)
-        {
-            case Ok<T, TErr> x:
-                return new Ok<T, TErrRet>(x.Get());
-            case Err<T, TErr> x:
-                return new Err<T, TErrRet>(await f(x.Get(), <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"arg{x}"))#>).ConfigureAwait(false));
-            default:
-                throw new NotImplementedException();
-        }
-    }
-    public static IResult<T, TErrRet> MapErr<T, TErr, TErrRet, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x}"))#>>(
-        this IResult<T, TErr> r, Func<TErr, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x}"))#>, TErrRet> f,
         <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x} arg{x}"))#>
         )
     {
-        if(r.TryGet(out var ret))
-        {
-            return new Ok<T, TErrRet>(ret);
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<T, TErrRet>(f(e, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"arg{x}"))#>));
-        }
+        return r switch {
+            Ok<T, TErr> x => new Ok<T, TErrRet>(x.Get()),
+            Err<T, TErr> x => new Err<T, TErrRet>(f(x.Get(), <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"arg{x}"))#>)),
+            _ => throw new NotImplementedException()
+        };
     }
-    public static async Task<IResult<T, TErrRet>> MapErrAsync<T, TErr, TErrRet, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x}"))#>>(
-        this IResult<T, TErr> r, Func<TErr, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x}"))#>, Task<TErrRet>> f,
+    public static async Task<Result<T, TErrRet>> MapErrAsync<T, TErr, TErrRet, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x}"))#>>(
+        this Result<T, TErr> r, Func<TErr, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x}"))#>, Task<TErrRet>> f,
         <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"TArg{x} arg{x}"))#>
         )
     {
-        if(r.TryGet(out var ret))
-        {
-            return new Ok<T, TErrRet>();
-        }
-        else
-        {
-            r.TryGetError(out var e);
-            return new Err<T, TErrRet>(await f(e, <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"arg{x}"))#>).ConfigureAwait(false));
-        }
+        return r switch {
+            Ok<T, TErr> x => new Ok<T, TErrRet>(x.Get()),
+            Err<T, TErr> x => new Err<T, TErrRet>(await f(x.Get(), <#=string.Join(", ", Enumerable.Range(0, i).Select(x => $"arg{x}"))#>).ConfigureAwait(false)),
+            _ => throw new NotImplementedException()
+        };
     }
 <#}#>
 }
