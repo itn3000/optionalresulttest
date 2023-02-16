@@ -81,6 +81,7 @@ namespace optionalresulttest
                     Console.WriteLine($"ng3: {x.Get()}");
                     break;
             }
+            Result.From(() => 0).Switch(i => i.ToString(), e => e.ToString(), null);
         }
         static void Main(string[] args)
         {

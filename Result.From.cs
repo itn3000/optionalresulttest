@@ -4,7 +4,7 @@ namespace optionalresulttest;
 
 public static partial class Result
 {
-    public static IResult<T, Exception> From<T>(Func<T> generator)
+    public static Result<T, Exception> From<T>(Func<T> generator)
     {
         try
         {
@@ -16,7 +16,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static async Task<IResult<T, Exception>> FromAsync<T>(Func<Task<T>> generator)
+    public static async Task<Result<T, Exception>> FromAsync<T>(Func<Task<T>> generator)
     {
         try
         {
@@ -28,7 +28,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static IResult<T, Exception> From<T, TArg1>(
+    public static Result<T, Exception> From<T, TArg1>(
         Func<TArg1, T> f,
         TArg1 arg1
         )
@@ -43,7 +43,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static async Task<IResult<T, Exception>> FromAsync<T, TArg1>(
+    public static async Task<Result<T, Exception>> FromAsync<T, TArg1>(
         Func<TArg1, Task<T>> f,
         TArg1 arg1
         )
@@ -58,7 +58,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static IResult<T, Exception> From<T, TArg1, TArg2>(
+    public static Result<T, Exception> From<T, TArg1, TArg2>(
         Func<TArg1, TArg2, T> f,
         TArg1 arg1, TArg2 arg2
         )
@@ -73,7 +73,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static async Task<IResult<T, Exception>> FromAsync<T, TArg1, TArg2>(
+    public static async Task<Result<T, Exception>> FromAsync<T, TArg1, TArg2>(
         Func<TArg1, TArg2, Task<T>> f,
         TArg1 arg1, TArg2 arg2
         )
@@ -88,7 +88,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static IResult<T, Exception> From<T, TArg1, TArg2, TArg3>(
+    public static Result<T, Exception> From<T, TArg1, TArg2, TArg3>(
         Func<TArg1, TArg2, TArg3, T> f,
         TArg1 arg1, TArg2 arg2, TArg3 arg3
         )
@@ -103,7 +103,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static async Task<IResult<T, Exception>> FromAsync<T, TArg1, TArg2, TArg3>(
+    public static async Task<Result<T, Exception>> FromAsync<T, TArg1, TArg2, TArg3>(
         Func<TArg1, TArg2, TArg3, Task<T>> f,
         TArg1 arg1, TArg2 arg2, TArg3 arg3
         )
@@ -118,7 +118,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static IResult<T, Exception> From<T, TArg1, TArg2, TArg3, TArg4>(
+    public static Result<T, Exception> From<T, TArg1, TArg2, TArg3, TArg4>(
         Func<TArg1, TArg2, TArg3, TArg4, T> f,
         TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4
         )
@@ -133,7 +133,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static async Task<IResult<T, Exception>> FromAsync<T, TArg1, TArg2, TArg3, TArg4>(
+    public static async Task<Result<T, Exception>> FromAsync<T, TArg1, TArg2, TArg3, TArg4>(
         Func<TArg1, TArg2, TArg3, TArg4, Task<T>> f,
         TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4
         )
@@ -148,7 +148,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static IResult<T, Exception> From<T, TArg1, TArg2, TArg3, TArg4, TArg5>(
+    public static Result<T, Exception> From<T, TArg1, TArg2, TArg3, TArg4, TArg5>(
         Func<TArg1, TArg2, TArg3, TArg4, TArg5, T> f,
         TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5
         )
@@ -163,7 +163,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static async Task<IResult<T, Exception>> FromAsync<T, TArg1, TArg2, TArg3, TArg4, TArg5>(
+    public static async Task<Result<T, Exception>> FromAsync<T, TArg1, TArg2, TArg3, TArg4, TArg5>(
         Func<TArg1, TArg2, TArg3, TArg4, TArg5, Task<T>> f,
         TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5
         )
@@ -178,7 +178,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static IResult<T, Exception> From<T, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(
+    public static Result<T, Exception> From<T, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(
         Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, T> f,
         TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6
         )
@@ -193,7 +193,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static async Task<IResult<T, Exception>> FromAsync<T, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(
+    public static async Task<Result<T, Exception>> FromAsync<T, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(
         Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, Task<T>> f,
         TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6
         )
@@ -208,7 +208,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static IResult<T, Exception> From<T, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(
+    public static Result<T, Exception> From<T, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(
         Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, T> f,
         TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7
         )
@@ -223,7 +223,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static async Task<IResult<T, Exception>> FromAsync<T, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(
+    public static async Task<Result<T, Exception>> FromAsync<T, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(
         Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, Task<T>> f,
         TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7
         )
@@ -238,7 +238,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static IResult<T, Exception> From<T, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(
+    public static Result<T, Exception> From<T, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(
         Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, T> f,
         TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8
         )
@@ -253,7 +253,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static async Task<IResult<T, Exception>> FromAsync<T, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(
+    public static async Task<Result<T, Exception>> FromAsync<T, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(
         Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, Task<T>> f,
         TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8
         )
@@ -268,7 +268,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static IResult<T, Exception> From<T, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9>(
+    public static Result<T, Exception> From<T, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9>(
         Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, T> f,
         TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8, TArg9 arg9
         )
@@ -283,7 +283,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static async Task<IResult<T, Exception>> FromAsync<T, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9>(
+    public static async Task<Result<T, Exception>> FromAsync<T, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9>(
         Func<TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TArg9, Task<T>> f,
         TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8, TArg9 arg9
         )

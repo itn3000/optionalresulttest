@@ -4,7 +4,7 @@ namespace optionalresulttest;
 
 public static partial class Result
 {
-    public static IResult<TRet, TErr> Map<T, TErr, TRet>(this IResult<T, TErr> r, Func<T, TRet> f)
+    public static Result<TRet, TErr> Map<T, TErr, TRet>(this Result<T, TErr> r, Func<T, TRet> f)
     {
         switch(r)
         {
@@ -16,7 +16,7 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet>(this IResult<T, TErr> r, Func<T, Task<TRet>> f)
+    public static async Task<Result<TRet, TErr>> MapAsync<T, TErr, TRet>(this Result<T, TErr> r, Func<T, Task<TRet>> f)
     {
         switch(r)
         {
@@ -28,7 +28,7 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<T, TErrRet> MapErr<T, TErr, TErrRet>(this IResult<T, TErr> r, Func<TErr, TErrRet> f)
+    public static Result<T, TErrRet> MapErr<T, TErr, TErrRet>(this Result<T, TErr> r, Func<TErr, TErrRet> f)
     {
         switch(r)
         {
@@ -40,7 +40,7 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<T, TErrRet>> MapErr<T, TErr, TErrRet>(this IResult<T, TErr> r, Func<TErr, Task<TErrRet>> f)
+    public static async Task<Result<T, TErrRet>> MapErr<T, TErr, TErrRet>(this Result<T, TErr> r, Func<TErr, Task<TErrRet>> f)
     {
         switch(r)
         {
@@ -52,8 +52,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0>(
-        this IResult<T, TErr> r, Func<T, TArg0, TRet> f,
+    public static Result<TRet, TErr> Map<T, TErr, TRet, TArg0>(
+        this Result<T, TErr> r, Func<T, TArg0, TRet> f,
         TArg0 arg0
         )
     {
@@ -67,8 +67,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0>(
-        this IResult<T, TErr> r, Func<T, TArg0, Task<TRet>> f,
+    public static async Task<Result<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0>(
+        this Result<T, TErr> r, Func<T, TArg0, Task<TRet>> f,
         TArg0 arg0
         )
     {
@@ -82,8 +82,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0>(
-        this IResult<T, TErr> r, Func<TErr, TArg0, TErrRet> f,
+    public static Result<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0>(
+        this Result<T, TErr> r, Func<TErr, TArg0, TErrRet> f,
         TArg0 arg0)
     {
         switch(r)
@@ -96,8 +96,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0>
-        (this IResult<T, TErr> r, Func<TErr, TArg0, Task<TErrRet>> f,
+    public static async Task<Result<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0>
+        (this Result<T, TErr> r, Func<TErr, TArg0, Task<TErrRet>> f,
         TArg0 arg0)
     {
         switch(r)
@@ -110,8 +110,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TRet> f,
+    public static Result<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1>(
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TRet> f,
         TArg0 arg0, TArg1 arg1
         )
     {
@@ -125,8 +125,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, Task<TRet>> f,
+    public static async Task<Result<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1>(
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, Task<TRet>> f,
         TArg0 arg0, TArg1 arg1
         )
     {
@@ -140,8 +140,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0, TArg1>(
-        this IResult<T, TErr> r, Func<TErr, TArg0, TArg1, TErrRet> f,
+    public static Result<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0, TArg1>(
+        this Result<T, TErr> r, Func<TErr, TArg0, TArg1, TErrRet> f,
         TArg0 arg0, TArg1 arg1)
     {
         switch(r)
@@ -154,8 +154,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0, TArg1>
-        (this IResult<T, TErr> r, Func<TErr, TArg0, TArg1, Task<TErrRet>> f,
+    public static async Task<Result<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0, TArg1>
+        (this Result<T, TErr> r, Func<TErr, TArg0, TArg1, Task<TErrRet>> f,
         TArg0 arg0, TArg1 arg1)
     {
         switch(r)
@@ -168,8 +168,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TRet> f,
+    public static Result<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2>(
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TRet> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2
         )
     {
@@ -183,8 +183,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, Task<TRet>> f,
+    public static async Task<Result<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2>(
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, Task<TRet>> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2
         )
     {
@@ -198,8 +198,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2>(
-        this IResult<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TErrRet> f,
+    public static Result<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2>(
+        this Result<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TErrRet> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2)
     {
         switch(r)
@@ -212,8 +212,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2>
-        (this IResult<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, Task<TErrRet>> f,
+    public static async Task<Result<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2>
+        (this Result<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, Task<TErrRet>> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2)
     {
         switch(r)
@@ -226,8 +226,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TRet> f,
+    public static Result<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3>(
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TRet> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3
         )
     {
@@ -241,8 +241,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, Task<TRet>> f,
+    public static async Task<Result<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3>(
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, Task<TRet>> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3
         )
     {
@@ -256,8 +256,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3>(
-        this IResult<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TErrRet> f,
+    public static Result<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3>(
+        this Result<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TErrRet> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3)
     {
         switch(r)
@@ -270,8 +270,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3>
-        (this IResult<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, Task<TErrRet>> f,
+    public static async Task<Result<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3>
+        (this Result<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, Task<TErrRet>> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3)
     {
         switch(r)
@@ -284,8 +284,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TRet> f,
+    public static Result<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4>(
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TRet> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4
         )
     {
@@ -299,8 +299,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, Task<TRet>> f,
+    public static async Task<Result<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4>(
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, Task<TRet>> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4
         )
     {
@@ -314,8 +314,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4>(
-        this IResult<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TErrRet> f,
+    public static Result<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4>(
+        this Result<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TErrRet> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
     {
         switch(r)
@@ -328,8 +328,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4>
-        (this IResult<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, Task<TErrRet>> f,
+    public static async Task<Result<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4>
+        (this Result<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, Task<TErrRet>> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4)
     {
         switch(r)
@@ -342,8 +342,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TRet> f,
+    public static Result<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TRet> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5
         )
     {
@@ -357,8 +357,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, Task<TRet>> f,
+    public static async Task<Result<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, Task<TRet>> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5
         )
     {
@@ -372,8 +372,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(
-        this IResult<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TErrRet> f,
+    public static Result<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(
+        this Result<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TErrRet> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
     {
         switch(r)
@@ -386,8 +386,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>
-        (this IResult<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, Task<TErrRet>> f,
+    public static async Task<Result<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>
+        (this Result<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, Task<TErrRet>> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5)
     {
         switch(r)
@@ -400,8 +400,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TRet> f,
+    public static Result<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TRet> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6
         )
     {
@@ -415,8 +415,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, Task<TRet>> f,
+    public static async Task<Result<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, Task<TRet>> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6
         )
     {
@@ -430,8 +430,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(
-        this IResult<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TErrRet> f,
+    public static Result<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(
+        this Result<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TErrRet> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6)
     {
         switch(r)
@@ -444,8 +444,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>
-        (this IResult<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, Task<TErrRet>> f,
+    public static async Task<Result<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>
+        (this Result<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, Task<TErrRet>> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6)
     {
         switch(r)
@@ -458,8 +458,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TRet> f,
+    public static Result<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TRet> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7
         )
     {
@@ -473,8 +473,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, Task<TRet>> f,
+    public static async Task<Result<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, Task<TRet>> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7
         )
     {
@@ -488,8 +488,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(
-        this IResult<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TErrRet> f,
+    public static Result<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(
+        this Result<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TErrRet> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7)
     {
         switch(r)
@@ -502,8 +502,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>
-        (this IResult<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, Task<TErrRet>> f,
+    public static async Task<Result<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>
+        (this Result<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, Task<TErrRet>> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7)
     {
         switch(r)
@@ -516,8 +516,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TRet> f,
+    public static Result<TRet, TErr> Map<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TRet> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8
         )
     {
@@ -531,8 +531,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, Task<TRet>> f,
+    public static async Task<Result<TRet, TErr>> MapAsync<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, Task<TRet>> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8
         )
     {
@@ -546,8 +546,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static IResult<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(
-        this IResult<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TErrRet> f,
+    public static Result<T, TErrRet> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(
+        this Result<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TErrRet> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8)
     {
         switch(r)
@@ -560,8 +560,8 @@ public static partial class Result
                 throw new NotImplementedException();
         }
     }
-    public static async Task<IResult<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>
-        (this IResult<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, Task<TErrRet>> f,
+    public static async Task<Result<T, TErrRet>> MapErr<T, TErr, TErrRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>
+        (this Result<T, TErr> r, Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, Task<TErrRet>> f,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8)
     {
         switch(r)

@@ -1,11 +1,13 @@
 namespace optionalresulttest;
 
-public interface IResult<T, TErr>
+public abstract class Result<T, TErr>
 {
-    bool IsOk();
+    internal Result(){}
+    abstract public bool IsOk();
+
 }
 // class or struct?
-public class Ok<T, TErr> : IResult<T, TErr>
+public sealed class Ok<T, TErr> : Result<T, TErr>
 {
     internal Ok(T value)
     {
@@ -18,17 +20,17 @@ public class Ok<T, TErr> : IResult<T, TErr>
         _Value = newValue;
         return oldValue;
     }
-    public bool IsOk() => true;
+    public override bool IsOk() => true;
     public T Get() => _Value;
 }
-public class Err<T, TErr> : IResult<T, TErr>
+public sealed class Err<T, TErr> : Result<T, TErr>
 {
     internal Err(TErr e)
     {
         _Error = e;
     }
     TErr _Error;
-    public bool IsOk() => false;
+    public override bool IsOk() => false;
     public TErr Reset(TErr e)
     {
         var oldValue = _Error;
