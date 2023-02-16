@@ -10,7 +10,7 @@ namespace optionalresulttest;
 
 public static partial class Result
 {
-    public static IResult<T, Exception> From<T>(Func<T> generator)
+    public static Result<T, Exception> From<T>(Func<T> generator)
     {
         try
         {
@@ -22,7 +22,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static async Task<IResult<T, Exception>> FromAsync<T>(Func<Task<T>> generator)
+    public static async Task<Result<T, Exception>> FromAsync<T>(Func<Task<T>> generator)
     {
         try
         {
@@ -36,7 +36,7 @@ public static partial class Result
     }
 <# foreach(var i in Enumerable.Range(1, argnum)) {#>
 <#    var typeargs = Enumerable.Range(1, i).Select(x => $"TArg{x}");#>
-    public static IResult<T, Exception> From<T, <#=string.Join(", ", typeargs)#>>(
+    public static Result<T, Exception> From<T, <#=string.Join(", ", typeargs)#>>(
         Func<<#=string.Join(", ", typeargs)#>, T> f,
         <#=string.Join(", ", Enumerable.Range(1, i).Select(x => $"TArg{x} arg{x}"))#>
         )
@@ -51,7 +51,7 @@ public static partial class Result
             return new Err<T, Exception>(e);
         }
     }
-    public static async Task<IResult<T, Exception>> FromAsync<T, <#=string.Join(", ", typeargs)#>>(
+    public static async Task<Result<T, Exception>> FromAsync<T, <#=string.Join(", ", typeargs)#>>(
         Func<<#=string.Join(", ", typeargs)#>, Task<T>> f,
         <#=string.Join(", ", Enumerable.Range(1, i).Select(x => $"TArg{x} arg{x}"))#>
         )

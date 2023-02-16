@@ -5,9 +5,9 @@ namespace optionalresulttest;
 public static partial class Result
 {
     public static TRet Switch<T, TErr, TRet, TArg0>(
-        this IResult<T, TErr> r, Func<T, TArg0, TRet> fOk,
+        this Result<T, TErr> r, Func<T, TArg0, TRet> fOk,
         Func<TErr, TArg0, TRet> fErr,
-        Func<IResult<T, TErr>, TArg0, TRet> fOther,
+        Func<TArg0, TRet>? fOther,
         TArg0 arg0
         )
     {
@@ -20,7 +20,7 @@ public static partial class Result
             default:
                 if (fOther != null)
                 {
-                    return fOther(r, arg0);
+                    return fOther(arg0);
                 }
                 else
                 {
@@ -29,9 +29,9 @@ public static partial class Result
         }
     }
     public static TRet Switch<T, TErr, TRet, TArg0, TArg1>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TRet> fOk,
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TRet> fOk,
         Func<TErr, TArg0, TArg1, TRet> fErr,
-        Func<IResult<T, TErr>, TArg0, TArg1, TRet> fOther,
+        Func<TArg0, TArg1, TRet>? fOther,
         TArg0 arg0, TArg1 arg1
         )
     {
@@ -44,7 +44,7 @@ public static partial class Result
             default:
                 if (fOther != null)
                 {
-                    return fOther(r, arg0, arg1);
+                    return fOther(arg0, arg1);
                 }
                 else
                 {
@@ -53,9 +53,9 @@ public static partial class Result
         }
     }
     public static TRet Switch<T, TErr, TRet, TArg0, TArg1, TArg2>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TRet> fOk,
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TRet> fOk,
         Func<TErr, TArg0, TArg1, TArg2, TRet> fErr,
-        Func<IResult<T, TErr>, TArg0, TArg1, TArg2, TRet> fOther,
+        Func<TArg0, TArg1, TArg2, TRet>? fOther,
         TArg0 arg0, TArg1 arg1, TArg2 arg2
         )
     {
@@ -68,7 +68,7 @@ public static partial class Result
             default:
                 if (fOther != null)
                 {
-                    return fOther(r, arg0, arg1, arg2);
+                    return fOther(arg0, arg1, arg2);
                 }
                 else
                 {
@@ -77,9 +77,9 @@ public static partial class Result
         }
     }
     public static TRet Switch<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TRet> fOk,
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TRet> fOk,
         Func<TErr, TArg0, TArg1, TArg2, TArg3, TRet> fErr,
-        Func<IResult<T, TErr>, TArg0, TArg1, TArg2, TArg3, TRet> fOther,
+        Func<TArg0, TArg1, TArg2, TArg3, TRet>? fOther,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3
         )
     {
@@ -92,7 +92,7 @@ public static partial class Result
             default:
                 if (fOther != null)
                 {
-                    return fOther(r, arg0, arg1, arg2, arg3);
+                    return fOther(arg0, arg1, arg2, arg3);
                 }
                 else
                 {
@@ -101,9 +101,9 @@ public static partial class Result
         }
     }
     public static TRet Switch<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TRet> fOk,
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TRet> fOk,
         Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TRet> fErr,
-        Func<IResult<T, TErr>, TArg0, TArg1, TArg2, TArg3, TArg4, TRet> fOther,
+        Func<TArg0, TArg1, TArg2, TArg3, TArg4, TRet>? fOther,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4
         )
     {
@@ -116,7 +116,7 @@ public static partial class Result
             default:
                 if (fOther != null)
                 {
-                    return fOther(r, arg0, arg1, arg2, arg3, arg4);
+                    return fOther(arg0, arg1, arg2, arg3, arg4);
                 }
                 else
                 {
@@ -125,9 +125,9 @@ public static partial class Result
         }
     }
     public static TRet Switch<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TRet> fOk,
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TRet> fOk,
         Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TRet> fErr,
-        Func<IResult<T, TErr>, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TRet> fOther,
+        Func<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TRet>? fOther,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5
         )
     {
@@ -140,7 +140,7 @@ public static partial class Result
             default:
                 if (fOther != null)
                 {
-                    return fOther(r, arg0, arg1, arg2, arg3, arg4, arg5);
+                    return fOther(arg0, arg1, arg2, arg3, arg4, arg5);
                 }
                 else
                 {
@@ -149,9 +149,9 @@ public static partial class Result
         }
     }
     public static TRet Switch<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TRet> fOk,
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TRet> fOk,
         Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TRet> fErr,
-        Func<IResult<T, TErr>, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TRet> fOther,
+        Func<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TRet>? fOther,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6
         )
     {
@@ -164,7 +164,7 @@ public static partial class Result
             default:
                 if (fOther != null)
                 {
-                    return fOther(r, arg0, arg1, arg2, arg3, arg4, arg5, arg6);
+                    return fOther(arg0, arg1, arg2, arg3, arg4, arg5, arg6);
                 }
                 else
                 {
@@ -173,9 +173,9 @@ public static partial class Result
         }
     }
     public static TRet Switch<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TRet> fOk,
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TRet> fOk,
         Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TRet> fErr,
-        Func<IResult<T, TErr>, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TRet> fOther,
+        Func<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TRet>? fOther,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7
         )
     {
@@ -188,7 +188,7 @@ public static partial class Result
             default:
                 if (fOther != null)
                 {
-                    return fOther(r, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+                    return fOther(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
                 }
                 else
                 {
@@ -197,9 +197,9 @@ public static partial class Result
         }
     }
     public static TRet Switch<T, TErr, TRet, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8>(
-        this IResult<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TRet> fOk,
+        this Result<T, TErr> r, Func<T, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TRet> fOk,
         Func<TErr, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TRet> fErr,
-        Func<IResult<T, TErr>, TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TRet> fOther,
+        Func<TArg0, TArg1, TArg2, TArg3, TArg4, TArg5, TArg6, TArg7, TArg8, TRet>? fOther,
         TArg0 arg0, TArg1 arg1, TArg2 arg2, TArg3 arg3, TArg4 arg4, TArg5 arg5, TArg6 arg6, TArg7 arg7, TArg8 arg8
         )
     {
@@ -212,7 +212,7 @@ public static partial class Result
             default:
                 if (fOther != null)
                 {
-                    return fOther(r, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
+                    return fOther(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
                 }
                 else
                 {
